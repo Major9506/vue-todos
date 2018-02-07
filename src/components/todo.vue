@@ -26,17 +26,23 @@
       </div>
   
       <div class=" form todo-new input-symbol"> <!-- 新增单个代办单项输入框,监听了回车事件，双向绑定text值,监听了disabled属性，在todo.locked为true的情况下无法编辑-->
-         <input type="text" v-model="text" placeholder='请输入'@keyup.enter="onAdd" :disabled="todo.locked" />
+         <input type="text" v-model="text" placeholder='请输入' @keyup.enter="onAdd" :disabled="todo.locked" />
         <span class="icon-add"></span>
       </div>
     </nav>
     <div class="content-scrollable list-items">
-      <!--容器下半部分-->
+     <div v-for="item in items"> <!-- 这里`v-for`会循环我们在 `data`函数 事先定义好的 ’items‘模拟数据，循环后拿到单个对象，在通过prop把数据传输给子组件 item -->
+        <item :item="item"></item>
+      </div>
     </div>
   </div>
 </template>
 <script>
+import item from './item';
 export default {
+  components: {  //新加components对象
+      item  //新加的
+    },
   data() {
     return {
       todo: { //详情内容
