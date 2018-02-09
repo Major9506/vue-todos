@@ -28,6 +28,12 @@ export default {
       this.todoId = TODOS[0].id; // 把菜单数据的默认的第一个对象的id赋值给默认选中的id
     });
   },
+   watch: {
+    'todoId'(id) {
+      this.$router.push({ name: 'todo', params: { id: id } });
+      //监听到用户的点击todoId的变化在跳转路由
+    }
+  },
   methods: {
     goList(id) { // 点击菜单时候,替换选中id
       this.todoId = id;
