@@ -15,7 +15,12 @@
     components: { // * 注册menus组件，让其可以在template调用
       menus,
       todo  //新加的
-    }
+    },
+     computed: {
+      menuOpen() {
+        return this.$store.state.menuOpen;
+        }
+      },
   };
 </script>
 <style lang="less">
